@@ -1,0 +1,83 @@
+﻿@model Product
+
+<section class="QuickView">
+    <div class="container">
+        <div class="main">
+            <div class="left-side">
+                <div class="littleimages">
+                    @foreach (var item in Model.Photos)
+                    {
+                        <div class="littleimage">
+                            <img src="/images/@item.PhotoName" alt="">
+                        </div>
+                    }
+                </div>
+                <div class="mainimage">
+                    <i onclick="left()" class="fa-solid fa-chevron-left"></i>
+                    <img src="/images/@Model.Photos.ToList()[0].PhotoName" alt="">
+
+                    <i onclick="right()" class="fa-solid fa-chevron-right"></i>
+
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="top">
+                    <h1>@Model.ProductName</h1>
+                    <p>
+                        @Model.ProductDescreption
+                    </p>
+                    <span>$</span><span>@Model.ProductPrice</span>
+
+                </div>
+                <div class="bottom">
+                   @*  <div class="left">
+                        <div class="line">
+                            <div class="title">Size</div>
+                            <div class="select">
+                                <select class="custom-select">
+                                    <option value="option1">Choose size</option>
+                                    <option value="option2">Size S</option>
+                                    <option value="option3">Size M</option>
+                                    <option value="option4">Size L</option>
+                                    <option value="option2">Size XL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="title">Color</div>
+                            <div class="select">
+                                <select class="custom-select">
+                                    <option value="option1">Choose an color</option>
+                                    <option value="option2">Red</option>
+                                    <option value="option3">Blue</option>
+                                    <option value="option4">Gray</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> *@
+                  @*   <div class="right">
+                        <div class="counter">
+                            <div class="minus">
+                                <i class="fa-solid fa-minus"></i>
+                            </div>
+                            <div class="number">1</div>
+                            <div class="plus">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div> *@
+                        <div class="addtocart">
+
+                             @if (User.Identity.IsAuthenticated)
+                            {
+                            <div class="addbtn">
+                                <a href="/Home/AddShoppingCart/@Model.ProductId">ADD TO CART</a>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/QuickView.js"></script>

@@ -1,0 +1,231 @@
+﻿
+@model List<Product>
+
+
+<section class="shop">
+
+    <div class="top" style="margin-top:100px;">
+        <section class="Overview">
+            <div class="top">
+                <h1>Product Overview</h1>
+            </div>
+            <div class="center">
+                <ul class="left">
+                    <a href="/Home/Shop">
+                    <li class="">
+                        All Products
+                        <hr>
+                    </li>
+                    </a>
+                    @foreach (var item in ViewBag.Categories)
+                    {
+                        <a href="/Home/Shop/@item.CategoryId">
+                        <li class="@item.CategoryName">@item.CategoryName<hr></li>
+                        </a>
+                    }
+                </ul>
+                @*   <div class="right">
+                    <div id="filterButton" class="filter">
+                        <i class="fa-solid fa-xmark qapama"></i>
+                        <i class="fa-solid fa-arrow-down-short-wide mx-1"></i>
+                        <span class="">Filter</span>
+                    </div> 
+                     <div id="searchButton" class="filter ">
+                        <i class="fa-solid fa-xmark qapama"></i>
+                        <i class="fa-solid fa-magnifying-glass mx-2"></i>
+                        <span class="">Search</span>
+                    </div>
+                </div> *@
+            </div>
+            <div class="filter-search">
+                <div id="SearchMenu" class="search ">
+                    <div class="searchbar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search..." class="">
+                    </div>
+                </div>
+              @*   <div id="FilterMenu" class="filter ">
+                    <div class="one_side">
+                        <h1 class="">Sort By</h1>
+                        <ul class="">
+                            <a href="">
+                            <li class="">
+                                Default
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                Popularity
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                Average rating
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                Newness
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                Price: Low to High
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                Price: High to Low
+                                <hr>
+                            </li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="one_side">
+                        <h1 class="">Price</h1>
+                        <ul class="">
+                            <a href="">
+                            <li class="">
+                                All
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                $0.00 - $50.00
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                $50.00 - $100.00
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                $100.00 - $150.00
+
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                $150.00 - $200.00
+
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="">
+                            <li class="">
+                                $200.00+
+
+                                <hr>
+                            </li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="one_side">
+                        <h1 class="">Color</h1>
+                        <ul class="">
+                            <a href="" class="">
+                                <i class="fa-solid fa-circle" style="color: black;"></i>
+                            <li class="text-sm">
+                                <span>Black</span>
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="" class="">
+                                <i class="fa-solid fa-circle" style="color: blue;"></i>
+                            <li class="text-sm">
+                                <span>Blue</span>
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="" class="">
+                                <i class="fa-solid fa-circle" style="color: gray;"></i>
+                            <li class="text-sm">
+                                <span>Grey</span>
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="" class="">
+                                <i class="fa-solid fa-circle" style="color: green;"></i>
+                            <li class="text-sm">
+                                <span>Green</span>
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="" class="">
+                                <i class="fa-solid fa-circle" style="color: red;"></i>
+                            <li class="text-sm">
+                                <span>Red</span>
+                                <hr>
+                            </li>
+                            </a>
+                            <a href="" class="">
+                                <i class="fa-solid fa-circle" style="color: rgb(223, 218, 218);"></i>
+                            <li class="text-sm">
+                                <span>White</span>
+                                <hr>
+                            </li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="one_side">
+                        <h1 class="">Tags</h1>
+                        <a href="" class="">
+                            Fashion
+                        </a>
+                        <a href="" class="">
+                            Lifestyle
+                        </a>
+                        <a href="" class="">
+                            Denim
+                        </a>
+                        <a href="" class="">
+                            Streetstyle
+                        </a>
+                        <a href="" class="">
+                            Crafts
+                        </a>
+                    </div>
+                </div> *@
+
+            </div>
+        </section>
+
+    </div>
+    <section class="products">
+
+        @foreach (var item in Model)
+        {
+            <div class="product" cat="@item.ProductCategory.CategoryName">
+                <div class="productIn">
+                    <div class="image">
+                        <img src="/images/@item.Photos.ToList()[0].PhotoName" alt="">
+                        <a href="/Home/QuickView/@item.ProductId" class="hiddendiv">Quick View</a>
+                    </div>
+                    <div class="text">
+                        <div class="div">
+                            <p>@item.ProductName</p>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                            <a href="/Home/AddFavorites/@item.ProductId"><i class="fa-regular fa-heart heart"></i></a>
+                            }
+                            </div>
+                        <span class="">$ @item.ProductPrice</span>
+                        <span class="branchname">@item.ProductBranch.BranchName</span>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </section>
+</section>

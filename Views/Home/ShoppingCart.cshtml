@@ -1,0 +1,130 @@
+﻿@using System.Linq;
+
+@model List<Basket>
+
+<section class="shoppingCart">
+ 
+    <div class="Shoppingcart">
+        <div class="prodinfo">
+           
+            <div class="infoline">
+                <h1>Product</h1>
+                <h1 style="padding-left:20px;">Price</h1>
+                <h1 class="Quantity" style="padding-left:20px;">Quantity</h1>
+                <h1 class="TopTotal">Total</h1>
+            </div>
+            <hr>
+            <h1 id="empty-message" style="width:20%;margin:auto;padding:30px 0px">There is empty</h1>
+
+            @foreach (var item in Model)
+            {
+                <div class="prodline">
+                    <div class="prodimg">
+                        <img src="/images/@item.BasketProduct.Photos.ToList()[0].PhotoName" alt="">
+                        <div class="prodname">@item.BasketProduct.ProductName</div>
+                        <a href="/Home/DeleteShoppingCart/@item.BasketId">
+                            <i class="fa-solid fa-circle-minus"></i>
+                        </a>
+                    </div>
+                    <div class="prodprice">
+                        <h1>$ <span>@item.BasketProduct.ProductPrice</span></h1>
+                    </div>
+                    <div class="prodquantity">
+                        <div class="counter">
+                            <div class="minus">
+                                <i class="fa-solid fa-minus"></i>
+                            </div>
+                            <div class="number">1</div>
+                            <div class="plus">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prodtotal">
+                        <h1>$ <span>@item.BasketProduct.ProductPrice</span></h1>
+                    </div>
+                </div>
+                <hr>
+            }
+            <div class="buttonsfooter">
+                <div class="coupon">
+                    <input type="text" placeholder="Coupon Code">
+                </div>
+                <div class="updatecart">
+                    <a href="" class="updetatotals">
+                        APPLY
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="cartinfo">
+            <div class="top">
+                <h1>Cart Totals</h1>
+                <p>Subtotal: <span>$79.65</span></p>
+            </div>
+            <div class="bottom">
+                <div class="left">
+                    <h1>Shipping:</h1>
+                </div>
+                <div class="right">
+                    <p>
+                        There are no shipping methods available. Please double check your address, or contact us if
+                        you
+                        need any help.
+                    </p>
+                    <div class="CalculateShipping">
+                        <h2>Calculate Shipping</h2>
+                        <select class="custom-select">
+                            <option value="option1">Select a country</option>
+                            <option value="option2">Azerbaijan</option>
+                        </select>
+                        <select class="custom-select">
+                            <option value="option1">Select a city</option>
+                            <option value="option2">Baku</option>
+                        </select>
+                        <select class="custom-select">
+                            <option value="option1">Post code / Zip</option>
+                            <option value="option2">5500</option>
+                        </select>
+                        <a href="" class="updetatotals">
+                            UPDATE TOTALS
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const prodinfo = document.querySelector(".prodinfo")
+
+        function checkProducts() {
+            const basketDivs = prodinfo.querySelectorAll('.prodline');
+
+            if ( basketDivs.length === 0) {
+                let emptyMessage = document.getElementById('empty-message');
+                if (!emptyMessage) {
+                    emptyMessage = document.createElement('h1');
+                    emptyMessage.id = 'empty-message';
+                    emptyMessage.textContent = 'There is empty';
+                    productsSection.appendChild(emptyMessage);
+                }
+            } else {
+                const emptyMessage = document.getElementById('empty-message');
+                if (emptyMessage) {
+                    prodinfo.removeChild(emptyMessage);
+
+                }
+            }
+        }
+
+        checkProducts();
+
+    });
+</script>

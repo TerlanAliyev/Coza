@@ -1,0 +1,25 @@
+﻿<section class="UserProfile">
+    <div class="userinfos">
+        <div class="userbackground"></div>
+        <div class="userinfo">
+            <img src="/images/logo-01.png" alt="" id="coza">
+            <div class="inputs">
+                <form action="/Home/ProfileEdit/@User.FindFirst(System.Security.Claims.ClaimTypes.Sid).Value" method="post" enctype="multipart/form-data">
+                    <input type="text" placeholder="Name-Lastname" name="UserName" value="@Model.UserName">
+                    <input type="text" placeholder="Nickname" name="UserNickName" value="@Model.UserNickName">
+                    <input type="password" placeholder="Password" name="UserPassword" value="@Model.UserPassword">
+                    <select name="UserGender" class="custom-select" style="width:100%;">
+                        <option value="man">
+                            Man
+                        </option>
+                        <option value="woman">
+                            Woman
+                        </option>
+                    </select>
+                    <button>Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>

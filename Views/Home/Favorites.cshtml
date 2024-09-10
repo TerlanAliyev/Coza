@@ -1,0 +1,79 @@
+﻿
+@model List<Favorite>   
+
+<section class="UserProfile">
+    <div class="userinfos">
+        <div class="userbackground"></div>
+        <div class="userinfo">
+           
+            <div class="UserName">
+                <h1>
+                    Your Favorite Products
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div style="padding:20px;">
+        <div class="UserProducts">
+          
+            <section class="products">
+                <h1 id="empty-message" style="width:30%;margin:auto;padding:30px 0px">There is empty</h1>
+
+                @foreach (var item in Model)
+                {
+                    <div class="product">
+                        <div class="productIn">
+                            <div class="image">
+                                <img src="/images/@item.FavoriteProduct.Photos.ToList()[0].PhotoName" alt="">
+                                <a href="/Home/QuickView/@item.FavoriteProduct.ProductId" class="hiddendiv">Quick View</a>
+                            </div>
+                            <div class="text">
+                                <div class="div">
+                                    <p>@item.FavoriteProduct.ProductName</p>
+                                    <a href="/Home/DeleteFavorites/@item.FavoriteId"><i style="color:#6c7ae0" class="fa-solid fa-heart heart"></i></a>
+                                </div>
+                                <span class="">@item.FavoriteProduct.ProductPrice</span>
+                                <span class="branchname">@item.FavoriteProduct.ProductBranch.BranchName</span>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </section>
+        </div>
+    </div>
+</section>
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const productsSection = document.querySelector('.products');
+
+        function checkProducts() {
+            const productDivs = productsSection.querySelectorAll('.product');
+
+            if (productDivs.length === 0) {
+                let emptyMessage = document.getElementById('empty-message');
+                if (!emptyMessage) {
+                    emptyMessage = document.createElement('h1');
+                    emptyMessage.id = 'empty-message';
+                    emptyMessage.textContent = 'There is empty';
+                    productsSection.appendChild(emptyMessage);
+                }
+            } else {
+                const emptyMessage = document.getElementById('empty-message');
+                if (emptyMessage) {
+                    productsSection.removeChild(emptyMessage);
+
+                }
+            }
+        }
+
+        checkProducts();
+
+    });
+
+</script>

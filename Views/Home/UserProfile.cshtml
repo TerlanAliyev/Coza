@@ -1,0 +1,93 @@
+﻿@model List<Product>
+
+<section class="UserProfile">
+    <div class="userinfos">
+        <div class="userbackground"></div>
+        <div class="userinfo">
+            <div class="settings">
+                <a href="/Home/ProfileEdit/@User.FindFirst(System.Security.Claims.ClaimTypes.Sid).Value"><i class="fa-solid fa-gear"></i></a>
+            </div>
+            <div class="userPp">
+                <img src="/images/@User.FindFirst(System.Security.Claims.ClaimTypes.Spn).Value" alt="">
+                <div class="UserPpEdit">
+                    <a href=""><i class="fa-regular fa-pen-to-square"></i></a>
+                </div>
+            </div>
+            <div class="UserName">
+                <h1>
+                    @User.FindFirst(System.Security.Claims.ClaimTypes.Name).Value
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div style="padding:20px;">
+        <div class="UserProducts">
+            <div class="top">
+                <h1> My Products</h1>
+            </div>
+
+
+
+            <section class="products">
+                <h1 id="empty-message">There is empty</h1>
+
+                @foreach (var item in Model)
+                {
+                        <div class="product">
+                            <div class="productIn">
+                                <div class="image">
+                                    <img src="/images/@item.Photos.ToList()[0].PhotoName" alt="">
+                                    <a href="/Home/QuickView/@item.ProductId" class="hiddendiv">Quick View</a>
+                                </div>
+                                <div class="text">
+                                    <div class="div">
+                                        <p>@item.ProductName</p>
+                                    </div>
+                                    <span class="">ProductPrice</span>
+                                </div>
+                                <div class="buttons">
+                                    <a href="/Home/Edit/@item.ProductId" class="edit">Edit</a>
+                                    <a href="/Home/Delete/@item.ProductId" class="delete">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                }
+
+            </section>
+        </div>
+        <a href="/Home/AddProduct" class="addproduct">Add Product</a>
+    </div>
+</section>
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const productsSection = document.querySelector('.products');
+
+        function checkProducts() {
+            const productDivs = productsSection.querySelectorAll('.product');
+
+            if (productDivs.length === 0) {
+                let emptyMessage = document.getElementById('empty-message');
+                if (!emptyMessage) {
+                    emptyMessage = document.createElement('h1');
+                    emptyMessage.id = 'empty-message';
+                    emptyMessage.textContent = 'There is empty';
+                    productsSection.appendChild(emptyMessage);
+                }
+            } else {
+                const emptyMessage = document.getElementById('empty-message');
+                if (emptyMessage) {
+                    productsSection.removeChild(emptyMessage);
+
+                }
+            }
+        }
+
+        checkProducts();
+
+    });
+
+</script>

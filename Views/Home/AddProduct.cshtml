@@ -1,0 +1,37 @@
+﻿<section class="UserProfile">
+    <div class="userinfos">
+        <div class="userbackground"></div>
+        <div class="userinfo">
+            <img src="/images/logo-01.png" alt="" id="coza">
+            <div class="inputs">
+                <form action="/Home/AddProduct" method="post" enctype="multipart/form-data">
+                    <input type="text" placeholder="Product Name" name="ProductName">
+                    <input type="text" placeholder="Product Price" name="ProductPrice">
+                    <textarea name="ProductDescreption" id="" placeholder="Product Description"></textarea>
+                    <div class="selects">
+                    <select class="custom-select " name="ProductCategoryId">
+                        @foreach (var item in ViewBag.Category)
+                        {
+                            <option value="@item.CategoryId">@item.CategoryName</option>
+                        }
+                    </select>
+                    <select class="custom-select " name="ProductBranchId">
+                        @foreach(var item in ViewBag.Branch){
+                        <option value="@item.BranchId">@item.BranchName</option>
+                        }
+                    </select>
+                    <select class="custom-select " name="ProductColorId">
+                        @foreach (var item in ViewBag.Colors)
+                        {
+                            <option value="@item.ColorId">@item.ColorName</option>
+                        }
+                    </select>
+                    </div>
+                    <input type="file" name="Photo" multiple>
+                    @* <input type="text" name="ProductUserId" value="@User.FindFirst(System.Security.Claims.ClaimTypes.Name).Value" style="display:none;" /> *@
+
+                    <button>Add</button>
+                </form>
+            </div>
+        </div>
+    </div>

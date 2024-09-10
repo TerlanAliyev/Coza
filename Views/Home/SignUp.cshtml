@@ -1,0 +1,26 @@
+﻿<section class="UserProfile">
+    <div class="userinfos">
+        <div class="userbackground"></div>
+        <div class="userinfo">
+            <img src="/images/logo-01.png" alt=""  id="coza">
+            <div class="inputs">
+                <form action="/Home/SignUp" method="post" enctype="multipart/form-data">
+                    <input type="text" placeholder="Name-Lastname" name="UserName">
+                    <input type="text" placeholder="Nickname" name="UserNickName">
+                    <input type="password" placeholder="Password" name="UserPassword">
+                    <select name="UserGender" class="custom-select" style="width:100%;  ">
+                        <option value="man">
+                            Man
+                        </option>
+                        <option value="woman">
+                            Woman
+                        </option>
+                    </select>
+                    <input type="file" name="UserProfilePhoto">
+                    <button>Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>

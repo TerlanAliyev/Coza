@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CozaStore</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/site.css" />
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+
+    <div class="esasloader">
+        <div class="loader"></div>
+    </div>
+
+    <nav id="nav">
+
+        <header>
+            <div class="logo">
+                <a href="/Home/Index"><img src="/images/logo-01.png" alt=""></a>
+            </div>
+            <ul class="navigation">
+                <li><a href="/Home/Index">Home</a></li>
+                <li><a href="/Home/Shop">Shop</a></li>
+                <li><a href="/Home/Blog">Blog</a></li>
+                <li><a href="/Home/About">About</a></li>
+                <li><a href="/Home/Contact">Contact</a></li>
+            </ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="icons">
+                    <a href="/Home/ShoppingCart">
+                        <div>
+                            <i class="fa-solid fa-cart-shopping text-xl text-textColor hover:text-hoverText  transition-colors duration-300"></i>
+                            <span>
+                                <p>0</p>
+                            </span>
+                        </div>
+                    </a>
+                    <a href="/Home/Favorites">
+                        <div>
+                            <i class="fa-regular fa-heart text-xl text-textColor hover:text-hoverText  transition-colors duration-300"></i>
+                        </div>
+                    </a>
+                </div>
+            }
+            <div class="UserDropDown">
+                <div class="userpp">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a>
+                            <img src="/images/@User.FindFirst(System.Security.Claims.ClaimTypes.Spn).Value" alt="" />
+                        </a>
+                    }
+                    else
+                    {
+                        <ul class="">
+                            <li style="padding:10px;background-color:#6C7AE0;border-radius:10px;color:white;}"><a href="/Home/Login">Login</a></li>
+                        </ul>
+                    }
+                </div>
+
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @* <p style="margin-left:5px;"> @User.FindFirst(System.Security.Claims.ClaimTypes.Name).Value </p> *@
+                    <div class="dropdown-menu">
+                        <ul>
+                            <a href="/Home/UserProfile">
+                            <li>
+                                <i class="fa-solid fa-user"></i> Profile
+                            </li>
+                            </a>
+                            <a href="/Home/LogOut">
+                            <li>
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out
+                            </li>
+                            </a>
+                        </ul>
+                    </div>
+                }
+
+            </div>
+            <div class="hamburger">
+                <i class="fa-solid fa-bars on" id="on"></i>
+            </div>
+            <div class="alert">
+                <ul class="navigation1">
+                    <i class='fa-solid fa-xmark close'></i>
+                    <li><a href="/Home/Index">Home</a></li>
+                    <li><a href="/Home/Shop">Shop</a></li>
+                    <li><a href="/Home/Blog">Blog</a></li>
+                    <li><a href="/Home/About">About</a></li>
+                    <li><a href="/Home/Contact">Contact</a></li>
+                </ul>
+            </div>
+        </header>
+    </nav>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="">
+        <div class="top">
+            <div class="oneside">
+                <h1>CATEGORIES</h1>
+                <ul>
+                    <a href="">
+                    <li class="text-sm">Women</li>
+                    </a>
+                    <a href="">
+                    <li class="text-sm">Men</li>
+                    </a>
+                    <a href="">
+                    <li class="text-sm">Shoes</li>
+                    </a>
+                    <a href="">
+                    <li class="text-sm">Watches</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="oneside">
+                <h1>HELP</h1>
+                <ul>
+                    <a href="">
+                    <li class="text-sm">Track Order</li>
+                    </a>
+                    <a href="">
+                    <li class="text-sm">Returns</li>
+                    </a>
+                    <a href="">
+                    <li class="text-sm">Shipping</li>
+                    </a>
+                    <a href="">
+                    <li class="text-sm">FAQs</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="oneside">
+                <h1>GET IN TOUCH</h1>
+                <p>
+                    Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on
+                    (+1) 96 716 6879
+                </p>
+                <div class="sosial">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="oneside">
+                <h1>NEWSLETTER</h1>
+                <input type="text" placeholder="email@exapmle.com">
+                <hr>
+                <div class="SUBSCRIBE">
+                    <a href="">SUBSCRIBE</a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="cards">
+                <img src="/images/icon-pay-01.png" alt="">
+                <img src="/images/icon-pay-02.png" alt="">
+                <img src="/images/icon-pay-03.png" alt="">
+                <img src="/images/icon-pay-04.png" alt="">
+                <img src="/images/icon-pay-05.png" alt="">
+            </div>
+            <div class="text">
+                <p>
+                    Copyright ©2024 All rights reserved | Made with <i class="fa-regular fa-heart"></i> by <a href="">Colorlib</a> & distributed by
+                    <a href="">ThemeWagon</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="/js/global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/slider.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
